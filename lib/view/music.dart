@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uplift/controller/get.controller.dart';
+import 'package:uplift/controller/music.controller.dart';
+import 'package:uplift/view/music.player.dart';
 
 class Music extends StatefulWidget {
   const Music({super.key});
@@ -11,6 +13,7 @@ class Music extends StatefulWidget {
 
 class _MusicState extends State<Music> {
   Get1controller controller = Get.put(Get1controller());
+  Musiccontroller _musiccontroller = Get.put(Musiccontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,40 +26,62 @@ class _MusicState extends State<Music> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 colorFilter: ColorFilter.mode(
-                  controller.getColor, // Apply a blue tint with 50% opacity
-                  BlendMode.color, // Use color blend mode
+                  controller.getColor,
+                  BlendMode.color,
                 ),
-                image: AssetImage("Background.png"),
+                image: AssetImage("assets/Background.png"),
                 fit: BoxFit.fill,
               ),
             ),
 
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Card(
-                      color: Colors.white,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        width: MediaQuery.of(context).size.width * 0.5,
+            child: Padding(
+              padding: EdgeInsets.only(top: 120, right: 5, left: 5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Obx(() {
+                    if (_musiccontroller.getMusic.isEmpty) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      return Expanded(
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 15,
+                                mainAxisSpacing: 10,
+                                mainAxisExtent: 135,
+                              ),
+                          itemCount: 10,
 
-                        child: ListTile(
-                          leading: Image.asset(
-                            "assets/ic_play.png",
+                          itemBuilder: (context, Index) {
+                            var item = _musiccontroller.getMusic[Index];
+                            return Card(
+                              color: Colors.white,
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                                width: MediaQuery.of(context).size.width * 0.5,
 
-                            height: 50,
-                          ),
-                          title: Text("Omkar"),
+                                child: ListTile(
+                                  leading: Image.asset(
+                                    "assets/ic_play.png",
+                                    height: 50,
+                                  ),
+                                  onTap: () {
+                                    Get.to(MusicPlayer(url: item.file!));
+                                  },
+                                  title: Text(item.title!),
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                      );
+                    }
+                  }),
+                ],
+              ),
             ),
           ),
           Positioned(

@@ -6,11 +6,11 @@ class Get1controller extends GetxController {
     Colors.red,
     Colors.blue,
     Colors.amber,
+    Colors.brown,
     Colors.pink,
-    Colors.purple,
   ];
 
-  var getColor = null;
+  var getColor = Colors.green;
 
   OnTap(var i) {
     getColor = i;

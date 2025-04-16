@@ -20,7 +20,6 @@ class _SplashState extends State<Splash> {
       );
     });
 
-    // TODO: implement initState
     super.initState();
   }
 

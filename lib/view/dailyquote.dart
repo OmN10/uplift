@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:uplift/controller/get.controller.dart';
 import 'package:uplift/view/dashboard.dart';
 
 class Dailyquote extends StatefulWidget {
@@ -9,9 +11,11 @@ class Dailyquote extends StatefulWidget {
 }
 
 class _DailyquoteState extends State<Dailyquote> {
+  Get1controller controller = Get.put(Get1controller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: controller.getColor,
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -20,6 +24,10 @@ class _DailyquoteState extends State<Dailyquote> {
               width: MediaQuery.of(context).size.width / 1,
               decoration: BoxDecoration(
                 image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                    Get1controller().getColor,
+                    BlendMode.color,
+                  ),
                   image: AssetImage("assets/Background.png"),
                   fit: BoxFit.fill,
                 ),
@@ -46,10 +54,7 @@ class _DailyquoteState extends State<Dailyquote> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => Dashboard()),
-                        );
+                        Get.off(Dashboard());
                       },
 
                       child: Text("YES PLEASE", style: TextStyle(fontSize: 20)),

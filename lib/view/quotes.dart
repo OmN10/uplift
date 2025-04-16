@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uplift/controller/get.controller.dart';
+import 'package:uplift/controller/quotes.controller.dart';
 
 class Quotes extends StatefulWidget {
   const Quotes({super.key});
@@ -11,11 +12,12 @@ class Quotes extends StatefulWidget {
 
 class _QuotesState extends State<Quotes> {
   final pageController = PageController(
-    initialPage: 2,
+    initialPage: 0,
     viewportFraction: 0.9,
     keepPage: true,
   );
 
+  Quotescontroller controller1 = Get.put(Quotescontroller());
   Get1controller controller = Get.put(Get1controller());
 
   @override
@@ -25,65 +27,61 @@ class _QuotesState extends State<Quotes> {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height / 1,
-            width: MediaQuery.of(context).size.width / 1,
             decoration: BoxDecoration(
               image: DecorationImage(
-                colorFilter: ColorFilter.mode(
-                  controller.getColor, // Apply a blue tint with 50% opacity
-                  BlendMode.color, // Use color blend mode
-                ),
-
                 image: AssetImage("assets/Background.png"),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                  controller.getColor,
+                  BlendMode.color,
+                ),
               ),
             ),
+
             child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 70),
-                  SizedBox(
-                    height: 500,
-                    width: 500,
-                    child: PageView(
-                      controller: pageController,
+              padding: const EdgeInsets.only(top: 50),
+              child: Obx(() {
+                if (controller1.getImage.isEmpty) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-                      children: [
-                        Card(color: Colors.white, child: Container()),
-                        Card(color: Colors.blueAccent, child: Container()),
-                        Card(color: Colors.brown, child: Container()),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                return PageView.builder(
+                  controller: pageController,
+                  itemCount: controller1.getImage.length,
+                  itemBuilder: (context, index) {
+                    final item = controller1.getImage[index];
+
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 110,
+                        horizontal: 10,
+                      ),
+                      child: Card(
+                        elevation: 25,
+                        color: Colors.white,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child:
+                              item.image != null
+                                  ? Image.network(
+                                    item.image!,
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  )
+                                  : CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }),
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * -0.4,
-            right: MediaQuery.of(context).size.width * 0.35,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 1,
-              width: MediaQuery.of(context).size.width * 0.6,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/moti.png")),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.28,
-            right: MediaQuery.of(context).size.width * -0.30,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 1,
-              width: MediaQuery.of(context).size.width * 1,
 
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/ic_add.png")),
-              ),
-              child: GestureDetector(onTap: () {}),
-            ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.05,
+            left: MediaQuery.of(context).size.width * 0.0004,
+            child: Image.asset("assets/moti.png", width: 250),
           ),
         ],
       ),

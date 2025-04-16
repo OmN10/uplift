@@ -20,44 +20,50 @@ class _ProfileState extends State<Profile> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height / 1,
-            width: MediaQuery.of(context).size.width / 2,
+            width: MediaQuery.of(context).size.width / 1,
             decoration: BoxDecoration(
               image: DecorationImage(
                 colorFilter: ColorFilter.mode(
                   controller.getColor, // Apply a blue tint with 50% opacity
                   BlendMode.color, // Use color blend mode
                 ),
-                image: AssetImage("white.png"),
+                image: AssetImage("assets/Background.png"),
+                fit: BoxFit.fill,
               ),
             ),
           ),
 
           Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.560,
+            bottom: MediaQuery.of(context).size.height * 0.720,
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.2,
               width: MediaQuery.of(context).size.width * 0.5,
               decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/Profile.png")),
+                image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                    controller.getColor, // Apply a blue tint with 50% opacity
+                    BlendMode.color, // Use color blend mode
+                  ),
+                  image: AssetImage("assets/Profile.png"),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
 
-          // Positioned(
-          //   top: MediaQuery.of(context).size.height * 0.15,
-          //   child: Container(
-          //     height: MediaQuery.of(context).size.height * 1,
-          //     width: MediaQuery.of(context).size.width * 1,
-          //     decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/Rectangle Copy 2.png"),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    "Choose Your Theme =>",
+                    style: TextStyle(fontSize: 25),
+                  ),
+                ),
+              ),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -88,143 +94,7 @@ class _ProfileState extends State<Profile> {
               ),
             ],
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     for (var i in controller.ofColors)
-          //       InkWell(
-          //         onTap: () {
-          //           controller.OnTap(i);
-          //           setState(() {});
-          //         },
-          //         child: Positioned(
-          //           left: MediaQuery.of(context).size.width * -0.6,
-          //           top: MediaQuery.of(context).size.height * 0.5,
-          //           right: MediaQuery.of(context).size.width * 0.02,
-          //           child: Container(
-          //             width: MediaQuery.of(context).size.width * 0.170,
-          //             height: MediaQuery.of(context).size.height / 10,
-          //             decoration: BoxDecoration(
-          //               color: i,
 
-          //               // Assuming 'i' is a color
-          //               image: DecorationImage(
-          //                 image: AssetImage("assets/Blue 60.png"),
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //   ],
-          // ),
-          // Positioned(
-          //   left: MediaQuery.of(context).size.width * -0.6,
-          //   top: MediaQuery.of(context).size.height * 0.5,
-          //   right: MediaQuery.of(context).size.width * 0.02,
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width * 0.170,
-          //     height: MediaQuery.of(context).size.height / 10,
-          //     decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/Blue 60.png"),
-          //         scale: 1.4,
-          //       ),
-          //     ),
-          //     child: Column(
-          //       children: [
-          //         for (var i in controller.ofColors)
-          //           InkWell(
-          //             onTap: () {
-          //               controller.OnTap(i);
-          //               setState(() {});
-          //             },
-          //             child: Container(
-          //               // Ensure InkWell has a child
-          //               width: 50,
-          //               height: 50,
-          //               color: i, // Assuming 'i' is a color
-          //             ),
-          //           ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-
-          // Positioned(
-          //   left: MediaQuery.of(context).size.width * -0.01,
-          //   top: MediaQuery.of(context).size.height * 0.5,
-          //   right: MediaQuery.of(context).size.width * 0.10,
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width * 0.170,
-          //     height: MediaQuery.of(context).size.height / 10,
-          //     decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/Orange 60.png"),
-          //         scale: 1.4,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   left: MediaQuery.of(context).size.width * 0.5,
-          //   top: MediaQuery.of(context).size.height * 0.5,
-          //   right: MediaQuery.of(context).size.width * 0.10,
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width * 0.170,
-          //     height: MediaQuery.of(context).size.height / 10,
-          //     decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/Pink 60.png"),
-          //         scale: 1.4,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   left: MediaQuery.of(context).size.width * 0.2,
-          //   top: MediaQuery.of(context).size.height * 0.61,
-          //   right: MediaQuery.of(context).size.width * 0.30,
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width * 0.170,
-          //     height: MediaQuery.of(context).size.height / 10,
-          //     decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/Pink 60.png"),
-          //         scale: 1.4,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   left: MediaQuery.of(context).size.width * -0.3,
-          //   top: MediaQuery.of(context).size.height * 0.61,
-          //   right: MediaQuery.of(context).size.width * 0.30,
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width * 0.170,
-          //     height: MediaQuery.of(context).size.height / 10,
-          //     decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/Purple 60.png"),
-          //         scale: 1.4,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   left: MediaQuery.of(context).size.width * 0.5,
-          //   top: MediaQuery.of(context).size.height * 0.61,
-          //   right: MediaQuery.of(context).size.width * 0.11,
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width * 0.120,
-          //     height: MediaQuery.of(context).size.height / 10,
-          //     decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //         image: AssetImage("assets/green 50.png"),
-          //         scale: 1.2,
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Positioned(
             right: MediaQuery.of(context).size.width * 1,
             top: MediaQuery.of(context).size.height * 0.5,
