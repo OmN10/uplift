@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uplift/controller/get.controller.dart';
 import 'package:uplift/controller/music.controller.dart';
-import 'package:uplift/view/music.player.dart';
+import 'package:uplift/view/musicplayer.dart';
 
 class Music extends StatefulWidget {
   const Music({super.key});
@@ -69,7 +69,7 @@ class _MusicState extends State<Music> {
                                     height: 50,
                                   ),
                                   onTap: () {
-                                    Get.to(MusicPlayer(url: item.file!));
+                                    Get.to(MusicPlayerExample(played: item));
                                   },
                                   title: Text(item.title!),
                                 ),
