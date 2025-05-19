@@ -28,7 +28,7 @@ class StoryApi extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (story.image != null) Image.network(story.image!),
+                Image.network(story.image!),
                 SizedBox(height: 15),
                 Text(
                   story.title ?? "",

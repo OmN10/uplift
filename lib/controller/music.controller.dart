@@ -16,6 +16,7 @@ class Musiccontroller extends GetxController {
 
       if (resp.data != null) {
         getMusic.value = Example1.getMusics(jsonDecode(resp.data));
+        print(getMusic);
         update();
 
         // print(response);

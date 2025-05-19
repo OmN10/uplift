@@ -12,7 +12,7 @@ class MusicPlayerExample extends StatefulWidget {
 
 class _MusicPlayerExampleState extends State<MusicPlayerExample> {
   final player = AudioPlayer();
-
+     
   playMusic() async {
     await player.play(UrlSource(widget.played.file!));
     setState(() {});
