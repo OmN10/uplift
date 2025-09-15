@@ -55,7 +55,7 @@ class Story extends StatelessWidget {
                               color: Colors.white,
                               child: Container(
                                 height:
-                                 MediaQuery.of(context).size.height * 0.12,
+                                    MediaQuery.of(context).size.height * 0.12,
                                 width: MediaQuery.of(context).size.width * 0.12,
 
                                 child: ListTile(
@@ -66,8 +66,6 @@ class Story extends StatelessWidget {
                                   ),
                                   onTap: () {
                                     Get.off(StoryApi(story: item));
-                                    
-
                                   },
                                   title: Text(item.title!),
                                 ),
